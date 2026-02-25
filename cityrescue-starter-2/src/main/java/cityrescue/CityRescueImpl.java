@@ -1,5 +1,6 @@
 package cityrescue;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import cityrescue.enums.*;
@@ -14,14 +15,19 @@ import cityrescue.exceptions.*;
 public class CityRescueImpl implements CityRescue {
 
     // TODO: add fields (map, arrays for stations/units/incidents, counters, tick, etc.)
+    // grid
     private int width;
     private int height;
     private boolean[][] grid; // true for obstacle, false for free
 
-    private Map<Integer, Station> stations; // stationId to Station
-    private Map<Integer, Unit> units; // unitId to Unit
-    private Map<Integer, Incident> incidents; // incidentId to Incident
+
+    // storage
+    private Map<Integer, Station> stations = new HashMap<>(); 
+    private Map<Integer, Unit> units = new HashMap<>()
+    private Map<Integer, Incident> incidents = new HashMap<>()
     
+    
+    // ID counters
     private int nextStationID = 1;
     private int nextUnitID = 1;
     private int nextIncidentID = 1;
@@ -41,6 +47,11 @@ public class CityRescueImpl implements CityRescue {
                 return new int[]{width, height};
         throw new UnsupportedOperationException("Not implemented yet");
     }
+    private void validateLocation(int x, int y) throws Invaild LocationException {
+        if (x < 0 || x >= width || y < 0 || y >= height) {
+            throw new InvalidLocationException("Location (" + x + ", " + y + ") is out of bounds.");
+        }
+    }   
 
     @Override
     public void addObstacle(int x, int y) throws InvalidLocationException {
