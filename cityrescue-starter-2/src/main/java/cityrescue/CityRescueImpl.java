@@ -1,5 +1,7 @@
 package cityrescue;
 
+import java.util.Map;
+
 import cityrescue.enums.*;
 import cityrescue.exceptions.*;
 
@@ -12,6 +14,12 @@ import cityrescue.exceptions.*;
 public class CityRescueImpl implements CityRescue {
 
     // TODO: add fields (map, arrays for stations/units/incidents, counters, tick, etc.)
+    private int width;
+    private int height;
+    private boolean[][] grid; // true for obstacle, false for free
+
+    private Map<Integer, Station> stations; // stationId to Station
+    private Map<Integer, Unit> units; // unitId to Unit
 
     @Override
     public void initialise(int width, int height) throws InvalidGridException {
