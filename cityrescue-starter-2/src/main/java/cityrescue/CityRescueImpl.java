@@ -20,6 +20,13 @@ public class CityRescueImpl implements CityRescue {
 
     private Map<Integer, Station> stations; // stationId to Station
     private Map<Integer, Unit> units; // unitId to Unit
+    private Map<Integer, Incident> incidents; // incidentId to Incident
+    
+    private int nextStationID = 1;
+    private int nextUnitID = 1;
+    private int nextIncidentID = 1;
+
+    private int tickCount = 0;
 
     @Override
     public void initialise(int width, int height) throws InvalidGridException {
